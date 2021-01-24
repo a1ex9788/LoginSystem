@@ -11,6 +11,5 @@ namespace LoginSystem.Models
         public string Surnames { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public string RepeatedPassword { get; set; }
     }
 }
