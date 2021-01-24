@@ -8,7 +8,7 @@
     <h1 class="display-3">Login</h1>
     <form class="mt-4" method="post">
         <input class="form-control mt-4" asp-for="@Model.loginInformation.Username" placeholder="Username" value="@Model.UsernameTemp">
-        <input class="form-control mt-2 mb-1" asp-for="@Model.loginInformation.Password" placeholder="Password">
+        <input class="form-control mt-2 mb-1" type="password" asp-for="@Model.loginInformation.Password" placeholder="Password">
         <a asp-page="/Register">Not registered yet?</a><br>
         <input class="btn btn-primary mt-4" type="submit" asp-page-handler="Login" value="Login">
     </form>

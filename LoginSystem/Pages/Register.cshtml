@@ -7,8 +7,8 @@
         <input class="form-control mt-4" asp-for="@Model.registerInformation.Name" placeholder="Name">
         <input class="form-control mt-2" asp-for="@Model.registerInformation.Surnames" placeholder="Surnames">
         <input class="form-control mt-2" asp-for="@Model.registerInformation.Username" placeholder="Username">
-        <input class="form-control mt-2" asp-for="@Model.registerInformation.Password" placeholder="Password">
-        <input class="form-control mt-2" asp-for="@Model.registerInformation.RepeatedPassword" placeholder="Repeat password">
+        <input class="form-control mt-2" type="password" asp-for="@Model.registerInformation.Password" placeholder="Password">
+        <input class="form-control mt-2" type="password" asp-for="@Model.registerInformation.RepeatedPassword" placeholder="Repeat password">
         <p class="errorText">@Model.ErrorText</p>
         <input class="btn btn-secondary mt-3 mr-1" type="submit" asp-page-handler="Cancel" value="Cancel">
         <input class="btn btn-primary mt-3 ml-1" type="submit" asp-page-handler="Register" value="Register">
