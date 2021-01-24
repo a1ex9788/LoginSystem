@@ -15,10 +15,10 @@ namespace LoginSystem.Pages
         public RegisterInformation registerInformation { get; set; }
 
         [BindProperty]
-        public string ErrorText { get; set; }
+        public string errorText { get; set; }
 
         [TempData]
-        public string UsernameTemp { get; set; }
+        public string usernameTemp { get; set; }
 
         private readonly LoginSystemDBContext dbContext;
 
@@ -36,21 +36,19 @@ namespace LoginSystem.Pages
         {
             if (AreThereEmptyFields())
             {
-                ErrorText = "Can not be empty fields. Please, fill all of them.";
+                errorText = "Can not be empty fields. Please, fill all of them.";
                 return null;
             }
 
             if (UsernameAlreadyInUse())
             {
-                ErrorText = $"The username '{registerInformation.Username}' is already in use. Please, select another.";
+                errorText = $"The username '{registerInformation.Username}' is already in use. Please, select another.";
                 return null;
             }
 
             if (!ArePasswordsEquals())
             {
-                ErrorText = "The two introduced passwords are not equal. Please, rewrite them.";
-                registerInformation.Password = "";
-                registerInformation.RepeatedPassword = "";
+                errorText = "The two introduced passwords are not equal. Please, rewrite them.";
                 return null;
             }
 
@@ -65,7 +63,7 @@ namespace LoginSystem.Pages
             dbContext.Users.Add(user);
             dbContext.SaveChanges();
 
-            UsernameTemp = user.Username;
+            usernameTemp = user.Username;
             return RedirectToPage("Index");
         }
 

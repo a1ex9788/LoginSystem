@@ -1,7 +1,6 @@
 ﻿using LoginSystem.Persistence;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 using System.Linq;
 
 namespace LoginSystem.Pages
@@ -11,8 +10,14 @@ namespace LoginSystem.Pages
         [BindProperty]
         public LoginInformation loginInformation { get; set; }
 
+        [BindProperty]
+        public string errorText { get; set; }
+
+        [BindProperty]
+        public string correctLoginText { get; set; }
+
         [TempData]
-        public string UsernameTemp { get; set; }
+        public string usernameTemp { get; set; }
 
         private readonly LoginSystemDBContext dbContext;
 
@@ -25,11 +30,11 @@ namespace LoginSystem.Pages
         {
             if (!UserExists())
             {
-                // Error
+                errorText = "The user or the password is incorrect.";
                 return;
             }
 
-            // OK
+            correctLoginText = "The login was completed successfully!";
         }
 
         private bool UserExists()
