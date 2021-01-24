@@ -14,6 +14,9 @@ namespace LoginSystem.Pages
         [BindProperty]
         public RegisterInformation registerInformation { get; set; }
 
+        [BindProperty]
+        public string ErrorText { get; set; }
+
         [TempData]
         public string UsernameTemp { get; set; }
 
@@ -31,9 +34,23 @@ namespace LoginSystem.Pages
 
         public IActionResult OnPostRegister()
         {
+            if (AreThereEmptyFields())
+            {
+                ErrorText = "Can not be empty fields. Please, fill all of them.";
+                return null;
+            }
+
             if (UsernameAlreadyInUse())
             {
-                // Error
+                ErrorText = $"The username '{registerInformation.Username}' is already in use. Please, select another.";
+                return null;
+            }
+
+            if (!ArePasswordsEquals())
+            {
+                ErrorText = "The two introduced passwords are not equal. Please, rewrite them.";
+                registerInformation.Password = "";
+                registerInformation.RepeatedPassword = "";
                 return null;
             }
 
@@ -52,9 +69,21 @@ namespace LoginSystem.Pages
             return RedirectToPage("Index");
         }
 
+        private bool AreThereEmptyFields()
+        {
+            return registerInformation.Name == null || registerInformation.Surnames == null
+                || registerInformation.Username == null || registerInformation.Password == null
+                || registerInformation.RepeatedPassword == null
+        }
+
         private bool UsernameAlreadyInUse()
         {
             return dbContext.Users.Any(u => u.Username == registerInformation.Username);
+        }
+
+        private bool ArePasswordsEquals()
+        {
+            return registerInformation.Password.Equals(registerInformation.RepeatedPassword);
         }
     }
 

@@ -6,3 +6,8 @@
     transform: translate(-50%,-50%);
     text-align: center;
 }
+
+.errorText {
+    color: red;
+    font-size: smaller;
+}
