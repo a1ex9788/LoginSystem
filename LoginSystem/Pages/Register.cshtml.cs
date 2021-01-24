@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LoginSystem.Logic;
 using LoginSystem.Models;
 using LoginSystem.Persistence;
 using Microsoft.AspNetCore.Mvc;
@@ -20,11 +21,11 @@ namespace LoginSystem.Pages
         [TempData]
         public string usernameTemp { get; set; }
 
-        private readonly LoginSystemDBContext dbContext;
+        private readonly LogicManager logicManager;
 
-        public RegisterModel(LoginSystemDBContext loginSystemDBContext)
+        public RegisterModel(LogicManager logicManager)
         {
-            dbContext = loginSystemDBContext;
+            this.logicManager = logicManager;
         }
 
         public IActionResult OnPostCancel()
@@ -40,30 +41,21 @@ namespace LoginSystem.Pages
                 return null;
             }
 
-            if (UsernameAlreadyInUse())
-            {
-                errorText = $"The username '{registerInformation.Username}' is already in use. Please, select another.";
-                return null;
-            }
-
             if (!ArePasswordsEquals())
             {
                 errorText = "The two introduced passwords are not equal. Please, rewrite them.";
                 return null;
             }
 
-            User user = new User()
+            bool wasRegistered = logicManager.RegisterUser(registerInformation.Name, registerInformation.Surnames, registerInformation.Username, registerInformation.Password);
+
+            if (!wasRegistered)
             {
-                Name = registerInformation.Name,
-                Surnames = registerInformation.Surnames,
-                Username = registerInformation.Username,
-                Password = registerInformation.Password
-            };
+                errorText = $"The username '{registerInformation.Username}' is already in use. Please, select another.";
+                return null;
+            }
 
-            dbContext.Users.Add(user);
-            dbContext.SaveChanges();
-
-            usernameTemp = user.Username;
+            usernameTemp = registerInformation.Username;
             return RedirectToPage("Index");
         }
 
@@ -72,11 +64,6 @@ namespace LoginSystem.Pages
             return registerInformation.Name == null || registerInformation.Surnames == null
                 || registerInformation.Username == null || registerInformation.Password == null
                 || registerInformation.RepeatedPassword == null;
-        }
-
-        private bool UsernameAlreadyInUse()
-        {
-            return dbContext.Users.Any(u => u.Username == registerInformation.Username);
         }
 
         private bool ArePasswordsEquals()

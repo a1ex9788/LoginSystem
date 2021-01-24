@@ -1,4 +1,5 @@
-﻿using LoginSystem.Persistence;
+﻿using LoginSystem.Logic;
+using LoginSystem.Persistence;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Linq;
@@ -19,11 +20,11 @@ namespace LoginSystem.Pages
         [TempData]
         public string usernameTemp { get; set; }
 
-        private readonly LoginSystemDBContext dbContext;
+        private readonly LogicManager logicManager;
 
-        public IndexModel(LoginSystemDBContext loginSystemDBContext)
+        public IndexModel(LogicManager logicManager)
         {
-            dbContext = loginSystemDBContext;
+            this.logicManager = logicManager;
         }
 
         public void OnPost() // Login
@@ -39,7 +40,7 @@ namespace LoginSystem.Pages
 
         private bool UserExists()
         {
-            return dbContext.Users.Any(u => u.Username == loginInformation.Username && u.Password == loginInformation.Password);
+            return logicManager.UserExists(loginInformation.Username, loginInformation.Password);
         }
     }
 
