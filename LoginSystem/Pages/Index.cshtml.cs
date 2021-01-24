@@ -12,5 +12,9 @@ namespace LoginSystem.Pages
         public void OnGet()
         {
         }
+
+        public void OnLogin()
+        {
+        }
     }
 }

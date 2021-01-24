@@ -3,12 +3,16 @@
 @{
     ViewData["Title"] = "Home page";
 }
+@section Styles {
+    <link href="@Url.Content("~/css/myStyles.css")" rel="stylesheet" type="text/css" />
+}
 
-<div class="text-center">
+<div class="groupForm">
     <h1 class="display-3">Login</h1>
-    <div class="mt-4 container-fluid">
+    <form class="mt-4" method="post">
         <input class="form-control mt-4" placeholder="Username" value="@Model.Username">
         <input class="form-control mt-2 mb-1" placeholder="Password">
-    </div>
-    <a asp-page="/Register">Not registered yet?</a>
+        <a asp-page="/Register">Not registered yet?</a><br>
+        <input class="mt-4" type="submit" asp-page-handler="Login" value="Login">
+    </form>
 </div>
