@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LoginSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -10,7 +11,7 @@ namespace LoginSystem.Pages
     public class RegisterModel : PageModel
     {
         [BindProperty]
-        public LoginInformation loginInformation { get; set; }
+        public User user { get; set; }
 
         [TempData]
         public string Username { get; set; }
@@ -26,17 +27,8 @@ namespace LoginSystem.Pages
 
         public IActionResult OnPostRegister()
         {
-            Username = loginInformation.Username;
+            Username = user.Username;
             return RedirectToPage("Index");
         }
-    }
-
-    public class LoginInformation
-    {
-        public string Name { get; set; }
-        public string Surnames { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string RepeatedPassword { get; set; }
     }
 }

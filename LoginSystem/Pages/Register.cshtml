@@ -7,11 +7,11 @@
 <div class="groupForm">
     <h1 class="display-3">Register</h1>
     <form class="mt-4" method="post">
-        <input class="form-control mt-4" asp-for="@Model.loginInformation.Name" placeholder="Name">
-        <input class="form-control mt-2" asp-for="@Model.loginInformation.Surnames" placeholder="Surnames">
-        <input class="form-control mt-2" asp-for="@Model.loginInformation.Username" placeholder="Username">
-        <input class="form-control mt-2" asp-for="@Model.loginInformation.Password" placeholder="Password">
-        <input class="form-control mt-2" asp-for="@Model.loginInformation.RepeatedPassword" placeholder="Repeat password">
+        <input class="form-control mt-4" asp-for="@Model.user.Name" placeholder="Name">
+        <input class="form-control mt-2" asp-for="@Model.user.Surnames" placeholder="Surnames">
+        <input class="form-control mt-2" asp-for="@Model.user.Username" placeholder="Username">
+        <input class="form-control mt-2" asp-for="@Model.user.Password" placeholder="Password">
+        <input class="form-control mt-2" asp-for="@Model.user.RepeatedPassword" placeholder="Repeat password">
         <input class="mt-4 mr-1" type="submit" asp-page-handler="Cancel" value="Cancel">
         <input class="mt-4 ml-1" type="submit" asp-page-handler="Register" value="Register">
     </form>
