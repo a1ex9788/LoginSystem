@@ -335,12 +335,3 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
-
-# BibTeX and Json temporary files
-GoogleScholarWrapper/TempFiles/
-
-# Sqlite DB
-BibliographicalSourcesIntegratorWarehouseDB.db
-
-# App UI shortcut
-/BibliographicalSourcesIntegrator.appref-ms
