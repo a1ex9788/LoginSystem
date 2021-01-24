@@ -73,7 +73,7 @@ namespace LoginSystem.Pages
         {
             return registerInformation.Name == null || registerInformation.Surnames == null
                 || registerInformation.Username == null || registerInformation.Password == null
-                || registerInformation.RepeatedPassword == null
+                || registerInformation.RepeatedPassword == null;
         }
 
         private bool UsernameAlreadyInUse()
