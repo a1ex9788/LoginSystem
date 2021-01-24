@@ -18,7 +18,7 @@ namespace LoginSystem.Persistence
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlite("Data Source=BibliographicalSourcesIntegratorWarehouseDB.db");
+            options.UseSqlite("Data Source=LoginSystem.db");
         }
     }
 }
