@@ -7,16 +7,18 @@ using System.Threading.Tasks;
 
 namespace LoginSystem.Persistence
 {
-    public class LoginSystemDBContext
+    public class LoginSystemDBContext : DbContext
     {
-        public LoginSystemDBContext()
-        {
-        }
-
         public DbSet<User> Users { get; set; }
 
-        public void SaveChanges()
+        public LoginSystemDBContext(DbContextOptions<LoginSystemDBContext> options) : base(options)
         {
+            Database.EnsureCreated();
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            options.UseSqlite("Data Source=BibliographicalSourcesIntegratorWarehouseDB.db");
         }
     }
 }
