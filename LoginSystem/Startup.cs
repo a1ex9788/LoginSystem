@@ -23,6 +23,7 @@ namespace LoginSystem
             services.AddScoped<LogicManager>();
             services.AddDbContext<LoginSystemDBContext>();
             services.AddRazorPages();
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +50,7 @@ namespace LoginSystem
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
         }
     }
