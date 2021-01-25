@@ -1,0 +1,55 @@
+{
+	"info": {
+		"_postman_id": "d466f57d-544e-4c44-a777-5b24a11b6e59",
+		"name": "LoginSystemRequests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:55555/api/Login/a1ex9788/1234q",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "55555",
+					"path": [
+						"api",
+						"Login",
+						"a1ex9788",
+						"1234q"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:55555/api/Register/Antonio/Recio Matamoros/antonioRecio/qwerty",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "55555",
+					"path": [
+						"api",
+						"Register",
+						"Antonio",
+						"Recio Matamoros",
+						"antonioRecio",
+						"qwerty"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
