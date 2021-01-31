@@ -19,7 +19,6 @@ namespace LoginSystem
             return Host.CreateDefaultBuilder(args)
                .ConfigureWebHostDefaults(webBuilder =>
                {
-                   webBuilder.UseUrls(new string[] { config.GetValue<string>("ApplicationUrl") });
                    webBuilder.UseStartup<Startup>();
                });
         }
